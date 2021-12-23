@@ -1,11 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page import="model.WeatherBean"%>
-
-
-<%
-WeatherBean wBean = (WeatherBean) request.getAttribute("wBean");
-%>
+<% WeatherBean wBean = (WeatherBean) request.getAttribute("wBean"); %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,23 +13,50 @@ WeatherBean wBean = (WeatherBean) request.getAttribute("wBean");
 </head>
 <body>
     <div class="main-container">
-        <div class="left-side">
-       		<% out.print("<p>Clouds: " + wBean.getCloudsStr() + "</p>");%>
-            <h3><%=wBean.getCityStr()%></h3>
-            <form action="OWservlet" method="get">
-                City:<input type="text" name="city"/><br/>
-                Country:<input type="text" name="country"/><br/>
-                <input type="submit" value="go"/>
-            </form>
+    	
+    	<div class="weather-entry-box">
+    	
+	        <div class="left-side">
+	       		
+	            <h3><%=wBean.getCityStr()%></h3>
+	            <form action="OWservlet" method="get">
+	                City:<input type="text" name="city"/><br/>
+	                Country:<input type="text" name="country"/><br/>
+	                <input type="submit" value="go"/>
+	            </form>
+	        </div>
+	        <div class="right-side">
+	            <div class="weather-box">
+	                <p><%=wBean.getTempC() %>°C</p>
+	                <div class="icon-border">
+	             		<div class="icon"><%= wBean.getIcon() %></div>
+	                </div>
+	            </div>
+            </div> 
+            
         </div>
-        <div class="right-side">
-            <div class="weather-box">
-                <p><%=wBean.getTempC() %>°C</p>
-                <div class="icon-border">
-             		<div class="icon"><%= wBean.getIcon() %></div>
-                </div>
-            </div>
+        
+        <div class="detailed-info-box">
+        	<div class="left-side">
+        		<ul class ="previous-searches">
+        			
+        			<%
+        			ArrayList cookieList = cookieList;
+        			for(int i=0;i<cookieList.size();i++) {
+        				out.print("<li>First Search</li>");
+        			}
+        			
+        			%>
+        			
+        		</ul>
+        	</div>
+        	<div class="right-side">
+        		<% out.print("<p>Clouds: " + wBean.getCloudsStr() + "</p>");%>
+        		<% out.print("<p>Rain: " + wBean.getPrecipitation() + "</p>");%>
+        		
+        	</div>
         </div>
+        
     </div>
 </body>
 </html>
