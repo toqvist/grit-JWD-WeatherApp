@@ -3,20 +3,28 @@ package model;
 public class WeatherBean {
 
 	private String cityStr;
-
 	private String countryStr;
 
 	private String cloudsStr;
-	//Because icons are emoji's, stores the icon directly.
-	private String icon;
 	
-	private String weatherStr;
+	
+	private String description;
 
 	private String temperatureStr;
 	private int tempC;
 	
 	private String precipitation;
 	
+	//Because icons are emoji's, stores the icon directly as a string.
+	private String icon;
+	
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
 	public String getTemperature() {
 		return temperatureStr;
 	}
