@@ -12,13 +12,16 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+	
+	<jsp:include page="WEB-INF/cookieForm.jsp" />
     <div class="main-container">
     	
     	<div class="weather-entry-box">
     	
 	        <div class="left-side">
 	       		
-	            <h3><%=wBean.getCityStr()%></h3>
+	            <h3><%=wBean.getCityStr()%>: <%= wBean.getDescription() %></h3>
+	            
 	            <form action="OWservlet" method="get">
 	                City:<input type="text" name="city"/><br/>
 	                Country:<input type="text" name="country"/><br/>
@@ -31,6 +34,7 @@
 	                <div class="icon-border">
 	             		<div class="icon"><%= wBean.getIcon() %></div>
 	                </div>
+	                
 	            </div>
             </div> 
             
@@ -39,15 +43,16 @@
         <div class="detailed-info-box">
         	<div class="left-side">
         		<ul class ="previous-searches">
-        			
-        			<%
+        			<!-- 
         			ArrayList cookieList = cookieList;
         			for(int i=0;i<cookieList.size();i++) {
         				out.print("<li>First Search</li>");
         			}
-        			
-        			%>
-        			
+        			 -->
+        			<li>Search</li>
+        			<li>Search</li>
+        			<li>Search</li>
+        			<li>Search</li>
         		</ul>
         	</div>
         	<div class="right-side">
