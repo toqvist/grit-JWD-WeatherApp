@@ -73,29 +73,9 @@ public class GetWeather {
 		
 		wBean.setCloudsStr(getElementString("clouds", wBean, doc, "name"));
 		wBean.setTemperature(getElementString("temperature", wBean, doc, "value"));
-		
-		//saveToBean("temperature", wBean, doc);
-		/*
-		// Create a Node list that gets everything in and under the "clouds" tag
-		NodeList nList = doc.getElementsByTagName("clouds");
-		System.out.println(nList);
-		// loop through the content of the tag
-		for (int i = 0; i < nList.getLength(); i++) {
-			// Save a node of the current list id
-			Node node = nList.item(i);
-			if (node.getNodeType() == Node.ELEMENT_NODE) {
-				// set the current node as an Element
-				Element eElement = (Element) node;
-				// get the content of an attribute in element
-				String XMLclouds = eElement.getAttribute("name");
-				// and print it
-				//System.out.println(wBean.getCityStr() + " is now " + XMLclouds);
-				// save it
-				wBean.setCloudsStr(XMLclouds);
-
-			}
-		}
-		 */
+		wBean.setPrecipitation(getElementString("precipitation",wBean, doc, "mode"));
+		String iconID = getElementString("weather", wBean, doc,"icon");
+		wBean.generateIcon(iconID);
 	}
 	
 	private static String getElementString (String element, WeatherBean wBean, Document doc, String attributeType) {

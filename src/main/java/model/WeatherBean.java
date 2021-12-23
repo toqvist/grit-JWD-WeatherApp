@@ -7,7 +7,6 @@ public class WeatherBean {
 	private String countryStr;
 
 	private String cloudsStr;
-	
 	//Because icons are emoji's, stores the icon directly.
 	private String icon;
 	
@@ -15,6 +14,8 @@ public class WeatherBean {
 
 	private String temperatureStr;
 	private int tempC;
+	
+	private String precipitation;
 	
 	public String getTemperature() {
 		return temperatureStr;
@@ -25,6 +26,14 @@ public class WeatherBean {
 		tempConvertKtoC(temperatureStr);
 	}
 	
+	public String getPrecipitation() {
+		return precipitation;
+	}
+
+	public void setPrecipitation(String precipitation) {
+		this.precipitation = precipitation;
+	}
+
 	public void tempConvertKtoC(String temperatureStr) {
 		double celsius = Double.parseDouble(temperatureStr) - 273.15;
 		System.out.println(celsius);
@@ -66,7 +75,6 @@ public class WeatherBean {
 	}
 //
 	public String getIcon() {
-		this.icon = "🌧️";
 		return icon;
 	}
 
@@ -75,14 +83,46 @@ public class WeatherBean {
 	}
 
 	
-	private void generateIcon () {
-		//☀️🌞☁️⛅⛈️🌤️🌥️🌦️🌧️🌨️🌩️
-		switch(this.weatherStr) {
-			case "Rain":  this.icon = "🌧️";
-	        break;
+	public void generateIcon (String iconID) {
+		//☀️🌞☁️⛅🌤️🌥️🌦️🌧️🌨️⛈️🌩️❄️
+		switch(iconID) {
+		case "01d": this.icon="🌞";
+			break;
+		case "01n": this.icon="🌝";
+			break;
+		case "02d": this.icon="⛅";
+			break;
+		case "02n": this.icon="🌚";
+			break;
+		case "04d": 
+		case "04n":
+			this.icon="☁️";
+			break;
+		case "09d":
+		case "09n":
+			this.icon="🌧️";
+			break;
+		case "10d":
+		case "10n":
+			this.icon="🌦️";
+			break;
+		case "11d":
+		case "11n":
+			if (precipitation.equals("no")) {
+				this.icon="🌩️";
+			} else {
+				this.icon="⛈️";
+			}
+			break;
+		case "13d":
+		case "13n":
+			this.icon="❄️";
+			break;
+		case "50d":
+		case "50n":
+			this.icon="🌫️";
+			break;
 		}
-		
-	
 	}
 
 }
