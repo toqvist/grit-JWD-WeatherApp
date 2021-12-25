@@ -64,3 +64,11 @@ body {
 	/*background-color: #f9f06b;*/
 	background-color: rgba(255, 255, 0, 0.486);
 }
+
+.previous-searches {
+	list-style: none;
+}
+
+a:link, a:visited {
+  color: white;
+}
