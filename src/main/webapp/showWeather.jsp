@@ -3,8 +3,10 @@
 <%@page import="model.WeatherBean"%>
 <%@page import="java.util.ArrayList" %>
 <%@page import="controller.CookieHandler" %>
-<% WeatherBean wBean = (WeatherBean) request.getAttribute("wBean");%>
-<% ArrayList<String> previousSearches  = (ArrayList<String>)request.getAttribute("previousSearches");%>
+<% 
+WeatherBean wBean = (WeatherBean) request.getAttribute("wBean");
+ArrayList<String> previousSearches  = (ArrayList<String>)request.getAttribute("previousSearches");
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,9 +54,8 @@
         			
         			<%
         			for (int i=0;i<previousSearches.size();i++) {
+        				//String[0] = country code, String[1]= city name
         				String[] search = previousSearches.get(i).split("%");
-        				//out.println("<li>" + search[1] + ", " + search[0] + "</li>");
-        				//out.println("<li><a href=""
         				out.println(
         					"<li><a href=\"OWServlet?city=" + search[1] + "&country=" + search[0] + "\">"
         					+ search[1] + ", " + search[0] + "</a></li>"
@@ -63,10 +64,6 @@
         			%>
         			
         		</ul>
-        		<!-- 
-        		<a href="OWServlet?city=" + search[1]
-        		"&country=">" + search[0]</a>
-        		 -->
         	</div>
         	<div class="right-side">
         		<% out.print("<p>Clouds: " + wBean.getCloudsStr() + "</p>");%>

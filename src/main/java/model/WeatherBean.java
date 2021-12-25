@@ -2,10 +2,10 @@ package model;
 
 public class WeatherBean {
 
-	private String cityStr;
-	private String countryStr;
+	private String city;
+	private String country;
 
-	private String cloudsStr;
+	private String clouds;
 	
 	
 	private String description;
@@ -18,10 +18,10 @@ public class WeatherBean {
 	//Because icons are emoji's, stores the icon directly as a string.
 	private String icon;
 
-	public WeatherBean(String cityStr, String countryStr) {
+	public WeatherBean(String city, String country) {
 
-		this.cityStr = cityStr;
-		this.countryStr = countryStr;
+		this.city = city;
+		this.country = country;
 
 	}
 
@@ -67,20 +67,20 @@ public class WeatherBean {
 	
 	
 	
-	public String getCityStr() {
-		return cityStr;
+	public String getCity() {
+		return city;
 	}
 
-	public String getCountryStr() {
-		return countryStr;
+	public String getCountry() {
+		return country;
 	}
 
-	public String getCloudsStr() {
-		return cloudsStr;
+	public String getClouds() {
+		return clouds;
 	}
 
-	public void setCloudsStr(String cloudsStr) {
-		this.cloudsStr = cloudsStr;
+	public void setClouds(String clouds) {
+		this.clouds = clouds;
 	}
 //
 	public String getIcon() {
