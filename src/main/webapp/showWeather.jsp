@@ -16,6 +16,7 @@
 <body>
 	
 	<jsp:include page="WEB-INF/cookieForm.jsp" />
+	
     <div class="main-container">
     	
     	<div class="weather-entry-box">
@@ -53,13 +54,6 @@
         			}
         			
         			%>
-        			<!-- 
-        			
-        			ArrayList cookieList = cookieList;
-        			for(int i=0;i<cookieList.size();i++) {
-        				if(cookie.name.equals(Search)
-        			}
-        			 -->
         		</ul>
         	</div>
         	<div class="right-side">

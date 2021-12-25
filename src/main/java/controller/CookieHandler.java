@@ -26,13 +26,16 @@ public class CookieHandler {
 		// more readable.
 		String cityStr = request.getParameter("city");
 		String countryStr = request.getParameter("country");
-		String cookieStr = "search%" + cityStr;
-		Cookie searchCookie = new Cookie(cookieStr, countryStr + cityStr);
-
-		// Set expiration time for cookie
-		searchCookie.setMaxAge(60 * 2);
-		// Add the cookie to the response
-		response.addCookie(searchCookie);
+		
+		if (cityStr != null && countryStr != null) {
+			String cookieStr = "search%" + cityStr;
+			Cookie searchCookie = new Cookie(cookieStr, countryStr + "%" + cityStr + "%");
+	
+			// Set expiration time for cookie
+			searchCookie.setMaxAge(60 * 2);
+			// Add the cookie to the response
+			response.addCookie(searchCookie);
+		}
 
 	}
 
@@ -55,24 +58,25 @@ public class CookieHandler {
 			return false;
 		}
 	}
-	//Using ArrayList might be introducing redundancies
-	public static ArrayList<String> getSearchCookieList (HttpServletRequest request) {
+	
+	public static ArrayList<String> getPreviousSearches (HttpServletRequest request) {
 		
 		Cookie cookies[] = request.getCookies();
 		
-		ArrayList<String> searchCookies= new ArrayList<>();
+		ArrayList<String> searches= new ArrayList<>();
 		
 		//Go through in reverse order so that latest searches will be at the top.
 		for (int i=(cookies.length)-1;i>=0;i--) {
 			//System.out.println(i);
 			
 			if(cookies[i].getName().contains("search%")) {
-				searchCookies.add( cookies[i].getValue());
-			}
-			
+				String cleanString[] = cookies[i].getValue().split("%");
+				
+				searches.add(cleanString[1] + ", " + cleanString[0]);
+			}			
 		
 		}
-		return searchCookies;
+		return searches;
 	}
 
 }

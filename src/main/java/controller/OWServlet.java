@@ -58,7 +58,7 @@ public class OWServlet extends HttpServlet {
 			CookieHandler.createSearchCookie(request, response);
 		}
 		
-		ArrayList<String> previousSearches = CookieHandler.getSearchCookieList(request);
+		ArrayList<String> previousSearches = CookieHandler.getPreviousSearches(request);
 		request.setAttribute("previousSearches", previousSearches);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("showWeather.jsp");
