@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
+	<jsp:include page="WEB-INF/cookieForm.jsp" />
     <div class="main-container">
         <div class="left-side">
        		<% out.print("Placeholder");%>
@@ -25,8 +25,10 @@
         <div class="right-side">
             <div class="weather-box">
                 <p>22°C</p>
-                <div class="icon-border">
+                <!-- 
+                 <div class="icon-border">
            	     	<img src="https://place-puppy.com/150x150" alt="">
+           	     -->
 	            </div>
             </div>  
         </div>

@@ -44,6 +44,7 @@
         	<div class="left-side">
         		<ul class ="previous-searches">
         			<!-- 
+        			Cookie ckList
         			ArrayList cookieList = cookieList;
         			for(int i=0;i<cookieList.size();i++) {
         				out.print("<li>First Search</li>");

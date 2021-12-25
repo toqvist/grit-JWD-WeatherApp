@@ -60,7 +60,7 @@ public class GetWeather {
 		in.close();
 
 		// print the response
-		System.out.println(ApiResponse);
+		//System.out.println(ApiResponse);
 
 		// Call a method to make a XMLdoc out of the full response
 		Document doc = convertStringToXMLDocument(ApiResponse);
@@ -68,11 +68,10 @@ public class GetWeather {
 		// normalize the XML response
 		doc.getDocumentElement().normalize();
 		// check that the XML response is OK by getting the Root element
-		System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
-
-		
-		wBean.setCloudsStr(getElementString("clouds", wBean, doc, "name"));
+		//System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
+		wBean.setDescription(getElementString("weather", wBean, doc,"value"));
 		wBean.setTemperature(getElementString("temperature", wBean, doc, "value"));
+		wBean.setCloudsStr(getElementString("clouds", wBean, doc, "name"));
 		wBean.setPrecipitation(getElementString("precipitation",wBean, doc, "mode"));
 		String iconID = getElementString("weather", wBean, doc,"icon");
 		wBean.generateIcon(iconID);
@@ -80,7 +79,7 @@ public class GetWeather {
 	
 	private static String getElementString (String element, WeatherBean wBean, Document doc, String attributeType) {
 		NodeList nList = doc.getElementsByTagName(element);
-		System.out.println(nList);
+		//System.out.println(nList);
 		// loop through the content of the tag
 		for (int i = 0; i < nList.getLength(); i++) {
 			// Save a node of the current list id
@@ -95,8 +94,6 @@ public class GetWeather {
 				//System.out.println(wBean.getCityStr() + " is now " + XMLclouds);
 				// save it
 				
-				//Something wrong here, I get an empty string for temperature
-				System.out.println("getElementString sent " + stringToSend);
 				return stringToSend;
 				
 			}

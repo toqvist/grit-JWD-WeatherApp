@@ -5,7 +5,6 @@ import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -35,26 +34,29 @@ public class OWServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-
-		String cityStr = request.getParameter("city");
-		String countryStr = request.getParameter("country");
-
-		WeatherBean wBean = new WeatherBean(cityStr, countryStr);
+		String city = request.getParameter("city");
+		String country = request.getParameter("country");
+		
+		if (!city.equals("") && !country.equals("")) {
+			
+		}
+		WeatherBean wBean = new WeatherBean(city, country);
 
 		GetWeather.getWeather(wBean);
 
 		request.setAttribute("wBean", wBean);
 		
-	    Cookie cookie = new Cookie("city-search", "$cty:" + cityStr + "$ctry:" + countryStr);
-	    
-	    //Set expiration time, 
-	    cookie.setMaxAge(60 * 2);
-	    //Add the cookie to the response
-	    response.addCookie(cookie);
-
+		
+		//----Call cookie handler and add cookies to the response
+		System.out.println(CookieHandler.cookieConsent(request));
+		if (CookieHandler.cookieConsent(request)) {
+			CookieHandler.createSearchCookie(request, response);
+		} 
 		RequestDispatcher rd = request.getRequestDispatcher("showWeather.jsp");
 		rd.forward(request, response);
 	}
+	
+
 }
 
 	
