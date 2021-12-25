@@ -50,7 +50,8 @@
         			<%
         			
         			for (int i=0;i<previousSearches.size();i++) {
-        				out.println("<li>" + previousSearches.get(i) + "</li>");
+        				String[] search = previousSearches.get(i).split("%");
+        				out.println("<li>" + search[1] + ", " + search[0] + "</li>");
         			}
         			
         			%>
