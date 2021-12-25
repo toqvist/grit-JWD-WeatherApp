@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@page import="model.WeatherBean"%>
 <%@page import="java.util.ArrayList" %>
+<%@page import="controller.CookieHandler" %>
 <% WeatherBean wBean = (WeatherBean) request.getAttribute("wBean");%>
 <% ArrayList<String> previousSearches  = (ArrayList<String>)request.getAttribute("previousSearches");%>
 <!DOCTYPE html>
@@ -14,8 +15,10 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+	<% if (CookieHandler.cookieConsent(request).equals("none")) { %>
+          <jsp:include page="WEB-INF/cookieForm.jsp" />
+	<% }%>
 	
-	<jsp:include page="WEB-INF/cookieForm.jsp" />
 	
     <div class="main-container">
     	

@@ -39,25 +39,34 @@ public class CookieHandler {
 
 	}
 
-	public static boolean cookieConsent(HttpServletRequest request) {
+	public static String cookieConsent(HttpServletRequest request) {
 		Cookie cookies[] = request.getCookies();
 		
-		if (cookies != null) {
+		if (cookies.length > 1){
 			for (int i=0;i<cookies.length;i++) {
 				System.out.println(cookies[i]);
 				if (cookies[i].getName().equals("cookies")) {
 					if (cookies[i].getValue().equals("accept")) {
-						
-						return true;
-					}	
+						return "accept";
+					} else {
+						return "deny";
+					}
+					
 				}
 			}
-			return false;
+			return "none";
 			
 		} else {
-			return false;
+			return "none";
 		}
 	}
+	
+	/*
+	public static boolean answeredConsentForm(HttpServletRequest request) {
+		Cookie cookies[] = request.getCookies();
+		
+	}
+	*/
 	
 	public static ArrayList<String> getPreviousSearches (HttpServletRequest request) {
 		

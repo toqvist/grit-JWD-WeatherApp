@@ -54,9 +54,12 @@ public class OWServlet extends HttpServlet {
 		
 		//----Call cookie handler and add cookies to the response
 		//System.out.println(CookieHandler.cookieConsent(request));
-		if (CookieHandler.cookieConsent(request)) {
+		
+	
+		if (CookieHandler.cookieConsent(request).equals("accept")) {
 			CookieHandler.createSearchCookie(request, response);
 		}
+		
 		
 		ArrayList<String> previousSearches = CookieHandler.getPreviousSearches(request);
 		request.setAttribute("previousSearches", previousSearches);
