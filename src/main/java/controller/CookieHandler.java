@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,7 +14,7 @@ public class CookieHandler {
 
 		Cookie consentCookie = new Cookie("cookies", request.getParameter("consent"));
 		// Set expiration time for cookie
-		consentCookie.setMaxAge(60 * 2);
+		consentCookie.setMaxAge(60 * 5);
 		// Add the cookie to the response
 		response.addCookie(consentCookie);
 	}
@@ -42,7 +44,7 @@ public class CookieHandler {
 				System.out.println(cookies[i]);
 				if (cookies[i].getName().equals("cookies")) {
 					if (cookies[i].getValue().equals("accept")) {
-						System.out.println("cookieConsent returned true");
+						
 						return true;
 					}	
 				}
@@ -53,17 +55,24 @@ public class CookieHandler {
 			return false;
 		}
 	}
-	
+	//Using ArrayList might be introducing redundancies
+	public static ArrayList<String> getSearchCookieList (HttpServletRequest request) {
+		
+		Cookie cookies[] = request.getCookies();
+		
+		ArrayList<String> searchCookies= new ArrayList<>();
+		
+		//Go through in reverse order so that latest searches will be at the top.
+		for (int i=(cookies.length)-1;i>=0;i--) {
+			System.out.println(i);
+			
+			if(cookies[i].getName().equals("search")) {
+				searchCookies.add( cookies[i].getValue());
+			}
+			
+		
+		}
+		return searchCookies;
+	}
 
-	// Cookie ck[] = request.getCookies();
-	// System.out.println("Cookie: " + ck[1].getValue()); //accept or deny
-
-	// if request has attribute "accept", set consent cookie
-	//
-	// CookieHandler.createConsentCookie(request, response);
-
-	// if consentCookie is not null or deny, create a search cookie
-	// if (cookie value == accept)
-	// CookieHandler.createSearchCookie(cityStr, countryStr, request, response);
-	
 }

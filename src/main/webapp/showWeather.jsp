@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page import="model.WeatherBean"%>
+<%@page import="java.util.ArrayList" %>
 <% WeatherBean wBean = (WeatherBean) request.getAttribute("wBean");%>
+<% ArrayList<String> previousSearches  = (ArrayList<String>)request.getAttribute("previousSearches");%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,6 +45,14 @@
         <div class="detailed-info-box">
         	<div class="left-side">
         		<ul class ="previous-searches">
+        			
+        			<%
+        			
+        			for (int i=0;i<previousSearches.size();i++) {
+        				out.println("<li>" + previousSearches.get(i) + "</li>");
+        			}
+        			
+        			%>
         			<!-- 
         			
         			ArrayList cookieList = cookieList;
@@ -50,10 +60,6 @@
         				if(cookie.name.equals(Search)
         			}
         			 -->
-        			<li>Search</li>
-        			<li>Search</li>
-        			<li>Search</li>
-        			<li>Search</li>
         		</ul>
         	</div>
         	<div class="right-side">

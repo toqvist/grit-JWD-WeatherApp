@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.GetWeather;
 import model.WeatherBean;
-
+import java.util.ArrayList;
 /**
  * Servlet implementation class OWservlet
  */
@@ -36,12 +36,11 @@ public class OWServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		String city ="";
 		String country ="";
+		
 		if (request.getParameter("city")== null) {
-			System.out.println("city param is null");
 			city = (String)request.getAttribute("city");
 			country = (String)request.getAttribute("country");
 		} else {
-			System.out.println("city param is not null");
 			city = request.getParameter("city");
 			country = request.getParameter("country");
 		}
@@ -57,7 +56,11 @@ public class OWServlet extends HttpServlet {
 		//System.out.println(CookieHandler.cookieConsent(request));
 		if (CookieHandler.cookieConsent(request)) {
 			CookieHandler.createSearchCookie(request, response);
-		} 
+		}
+		
+		ArrayList<String> previousSearches = CookieHandler.getSearchCookieList(request);
+		request.setAttribute("previousSearches", previousSearches);
+		
 		RequestDispatcher rd = request.getRequestDispatcher("showWeather.jsp");
 		rd.forward(request, response);
 	}
