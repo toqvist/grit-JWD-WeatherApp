@@ -6,6 +6,12 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/* CookieHandler is a helper class mainly used by the OWServlet. Is responsible for:
+ * - Cookie creation
+ * - Reading the city and country values of cookies
+ * - Checking if consent has been given, or if the cookieForm has been ignored (or the consnetCookie expired).
+ */
+
 public class CookieHandler {
 
 	
@@ -24,12 +30,12 @@ public class CookieHandler {
 
 		// Technically these variables could be parameters instead, but I think this is
 		// more readable.
-		String cityStr = request.getParameter("city");
-		String countryStr = request.getParameter("country");
+		String city = request.getParameter("city");
+		String country = request.getParameter("country");
 		
-		if (cityStr != null && countryStr != null) {
-			String cookieStr = "search%" + cityStr;
-			Cookie searchCookie = new Cookie(cookieStr, countryStr + "%" + cityStr + "%");
+		if (city != null && country != null) {
+			String cookieStr = "search%" + city;
+			Cookie searchCookie = new Cookie(cookieStr, country + "%" + city + "%");
 	
 			// Set expiration time for cookie
 			searchCookie.setMaxAge(60 * 2);

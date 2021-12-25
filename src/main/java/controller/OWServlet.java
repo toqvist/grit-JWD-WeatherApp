@@ -34,9 +34,11 @@ public class OWServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
 		String city ="";
 		String country ="";
 		
+		//getAttribute is only called by index.
 		if (request.getParameter("city")== null) {
 			city = (String)request.getAttribute("city");
 			country = (String)request.getAttribute("country");
@@ -67,6 +69,7 @@ public class OWServlet extends HttpServlet {
 		RequestDispatcher rd = request.getRequestDispatcher("showWeather.jsp");
 		rd.forward(request, response);
 	}
+	
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
