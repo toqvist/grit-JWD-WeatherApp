@@ -7,6 +7,10 @@ body {
 	margin:0px;
 }
 
+.cookie-form {
+	padding: 2em;
+}
+
 .main-container {
     background-color: rgb(43, 60, 82);
     color: rgb(255, 255, 255);
