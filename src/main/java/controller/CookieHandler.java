@@ -26,8 +26,8 @@ public class CookieHandler {
 		// more readable.
 		String cityStr = request.getParameter("city");
 		String countryStr = request.getParameter("country");
-
-		Cookie searchCookie = new Cookie("search", countryStr + cityStr);
+		String cookieStr = "search%" + cityStr;
+		Cookie searchCookie = new Cookie(cookieStr, countryStr + cityStr);
 
 		// Set expiration time for cookie
 		searchCookie.setMaxAge(60 * 2);
@@ -64,9 +64,9 @@ public class CookieHandler {
 		
 		//Go through in reverse order so that latest searches will be at the top.
 		for (int i=(cookies.length)-1;i>=0;i--) {
-			System.out.println(i);
+			//System.out.println(i);
 			
-			if(cookies[i].getName().equals("search")) {
+			if(cookies[i].getName().contains("search%")) {
 				searchCookies.add( cookies[i].getValue());
 			}
 			
