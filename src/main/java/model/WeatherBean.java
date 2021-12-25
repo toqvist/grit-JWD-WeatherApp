@@ -17,6 +17,14 @@ public class WeatherBean {
 	
 	//Because icons are emoji's, stores the icon directly as a string.
 	private String icon;
+
+	public WeatherBean(String cityStr, String countryStr) {
+
+		this.cityStr = cityStr;
+		this.countryStr = countryStr;
+
+	}
+
 	
 	public String getDescription() {
 		return description;
@@ -58,13 +66,6 @@ public class WeatherBean {
 	}
 	
 	
-
-	public WeatherBean(String cityStr, String countryStr) {
-
-		this.cityStr = cityStr;
-		this.countryStr = countryStr;
-
-	}
 	
 	public String getCityStr() {
 		return cityStr;

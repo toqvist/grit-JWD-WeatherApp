@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page import="model.WeatherBean"%>
-<% WeatherBean wBean = (WeatherBean) request.getAttribute("wBean"); %>
+<% WeatherBean wBean = (WeatherBean) request.getAttribute("wBean");%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,7 +22,7 @@
 	       		
 	            <h3><%=wBean.getCityStr()%>: <%= wBean.getDescription() %></h3>
 	            
-	            <form action="OWservlet" method="get">
+	            <form action="OWServlet" method="get">
 	                City:<input type="text" name="city"/><br/>
 	                Country:<input type="text" name="country"/><br/>
 	                <input type="submit" value="go"/>
@@ -44,10 +44,10 @@
         	<div class="left-side">
         		<ul class ="previous-searches">
         			<!-- 
-        			Cookie ckList
+        			
         			ArrayList cookieList = cookieList;
         			for(int i=0;i<cookieList.size();i++) {
-        				out.print("<li>First Search</li>");
+        				if(cookie.name.equals(Search)
         			}
         			 -->
         			<li>Search</li>

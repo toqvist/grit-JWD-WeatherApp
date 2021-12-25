@@ -15,7 +15,7 @@ import model.WeatherBean;
 /**
  * Servlet implementation class OWservlet
  */
-@WebServlet("/OWservlet")
+@WebServlet("/OWServlet")
 public class OWServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -34,12 +34,18 @@ public class OWServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String city = request.getParameter("city");
-		String country = request.getParameter("country");
-		
-		if (!city.equals("") && !country.equals("")) {
-			
+		String city ="";
+		String country ="";
+		if (request.getParameter("city")== null) {
+			System.out.println("city param is null");
+			city = (String)request.getAttribute("city");
+			country = (String)request.getAttribute("country");
+		} else {
+			System.out.println("city param is not null");
+			city = request.getParameter("city");
+			country = request.getParameter("country");
 		}
+		
 		WeatherBean wBean = new WeatherBean(city, country);
 
 		GetWeather.getWeather(wBean);
@@ -48,12 +54,17 @@ public class OWServlet extends HttpServlet {
 		
 		
 		//----Call cookie handler and add cookies to the response
-		System.out.println(CookieHandler.cookieConsent(request));
+		//System.out.println(CookieHandler.cookieConsent(request));
 		if (CookieHandler.cookieConsent(request)) {
 			CookieHandler.createSearchCookie(request, response);
 		} 
 		RequestDispatcher rd = request.getRequestDispatcher("showWeather.jsp");
 		rd.forward(request, response);
+	}
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException {
+		doGet(request,response);
 	}
 	
 
