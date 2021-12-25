@@ -70,8 +70,7 @@ public class CookieHandler {
 			//System.out.println(i);
 			
 			if(cookies[i].getName().contains("search%")) {
-				//String cleanString[] = cookies[i].getValue().split("%");
-				//(cleanString[1] + ", " + cleanString[0])
+				
 				searches.add(cookies[i].getValue());
 			}			
 		

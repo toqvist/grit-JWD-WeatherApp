@@ -31,7 +31,6 @@ public class CookieServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		
-		
 		CookieHandler.createConsentCookie(request,response);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("index.jsp");

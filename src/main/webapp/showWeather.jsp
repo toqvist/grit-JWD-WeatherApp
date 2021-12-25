@@ -48,14 +48,22 @@
         		<ul class ="previous-searches">
         			
         			<%
-        			
         			for (int i=0;i<previousSearches.size();i++) {
         				String[] search = previousSearches.get(i).split("%");
-        				out.println("<li>" + search[1] + ", " + search[0] + "</li>");
+        				//out.println("<li>" + search[1] + ", " + search[0] + "</li>");
+        				//out.println("<li><a href=""
+        				out.println(
+        					"<li><a href=\"OWServlet?city=" + search[1] + "&country=" + search[0] + "\">"
+        					+ search[1] + ", " + search[0] + "</a></li>"
+        				);
         			}
-        			
         			%>
+        			
         		</ul>
+        		<!-- 
+        		<a href="OWServlet?city=" + search[1]
+        		"&country=">" + search[0]</a>
+        		 -->
         	</div>
         	<div class="right-side">
         		<% out.print("<p>Clouds: " + wBean.getCloudsStr() + "</p>");%>
