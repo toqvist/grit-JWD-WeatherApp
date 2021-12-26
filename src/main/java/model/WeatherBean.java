@@ -1,4 +1,6 @@
 package model;
+import java.text.SimpleDateFormat;  
+import java.util.Date;  
 
 public class WeatherBean {
 
@@ -15,13 +17,23 @@ public class WeatherBean {
 	//Because icons are emoji's, stores the icon directly as a string.
 	private String icon;
 
+	private String date;
+	
 	public WeatherBean(String city, String country) {
 
 		this.city = city;
 		this.country = country;
-
+		this.date=java.time.LocalDate.now().toString();
 	}
 	
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+
 	public String getDescription() {
 		return description;
 	}
