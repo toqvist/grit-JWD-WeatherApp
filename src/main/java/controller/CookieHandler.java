@@ -17,7 +17,6 @@ public class CookieHandler {
 	
 	//Creates a cookie "consent" with the value of parameter "consent", should only be called by CookieServlet that has "consent" parameter.
 	public static void createConsentCookie(HttpServletRequest request, HttpServletResponse response) {
-
 		Cookie consentCookie = new Cookie("cookies", request.getParameter("consent"));
 		// Set expiration time for cookie
 		consentCookie.setMaxAge(60 * 5);
@@ -48,16 +47,17 @@ public class CookieHandler {
 	public static String cookieConsent(HttpServletRequest request) {
 		Cookie cookies[] = request.getCookies();
 		
+		//Make sure there is more than one cookie.
+		//Go through each cookie and if cokkie: "consent" is found, check and return it's value.
 		if (cookies.length > 1){
+
 			for (int i=0;i<cookies.length;i++) {
-				System.out.println(cookies[i]);
 				if (cookies[i].getName().equals("cookies")) {
 					if (cookies[i].getValue().equals("accept")) {
 						return "accept";
 					} else {
 						return "deny";
 					}
-					
 				}
 			}
 			return "none";
@@ -66,14 +66,7 @@ public class CookieHandler {
 			return "none";
 		}
 	}
-	
-	/*
-	public static boolean answeredConsentForm(HttpServletRequest request) {
-		Cookie cookies[] = request.getCookies();
-		
-	}
-	*/
-	
+	//Returns list of the values from all search cookies
 	public static ArrayList<String> getPreviousSearches (HttpServletRequest request) {
 		
 		Cookie cookies[] = request.getCookies();
@@ -82,7 +75,6 @@ public class CookieHandler {
 		
 		//Go through in reverse order so that latest searches will be at the top.
 		for (int i=(cookies.length)-1;i>=0;i--) {
-			//System.out.println(i);
 			
 			if(cookies[i].getName().contains("search%")) {
 				
