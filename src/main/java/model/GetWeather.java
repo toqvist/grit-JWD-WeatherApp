@@ -18,12 +18,6 @@ import org.xml.sax.InputSource;
 
 public class GetWeather {
 
-	// public String URL =
-	// "http://api.openweathermap.org/data/2.5/weather?q=malmö,se&APPID=099eff339f56d6a29a9823857b2f2671&mode=xml";
-	//API key: 0b1fc4a863dbe9ca25032ffe077d9017
-	/* Example API call
-	 * api.openweathermap.org/data/2.5/forecast?id=524901&appid={API key}
-	 */
 	public static void getWeather(WeatherBean wBean) throws IOException {
 
 		// Build the API call URL by adding city+country into a URL
@@ -79,7 +73,7 @@ public class GetWeather {
 	
 	private static String getElementString (String element, WeatherBean wBean, Document doc, String attributeType) {
 		NodeList nList = doc.getElementsByTagName(element);
-		//System.out.println(nList);
+		
 		// loop through the content of the tag
 		for (int i = 0; i < nList.getLength(); i++) {
 			// Save a node of the current list id

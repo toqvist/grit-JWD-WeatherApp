@@ -2,9 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@page import="controller.CookieHandler"%>
 <%@page import="model.WeatherBean"%>
-<%
-WeatherBean wBean = (WeatherBean) request.getAttribute("wBean");
-%>
+<% WeatherBean wBean = (WeatherBean) request.getAttribute("wBean"); %>
 <!DOCTYPE html>
 <html>
 <html lang="en">
@@ -17,15 +15,12 @@ WeatherBean wBean = (WeatherBean) request.getAttribute("wBean");
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-	<%
-	if (CookieHandler.cookieConsent(request).equals("none")) {
-	%>
+	<% if (CookieHandler.cookieConsent(request).equals("none")) { %>
 	<jsp:include page="WEB-INF/cookieForm.jsp" />
-	<%
-	}
-	%>
+	<% } %>
 	
 	<jsp:include page="WEB-INF/showWeather.jsp" />
+	
 	<jsp:include page="WEB-INF/footer.jsp" />
 </body>
 </html>
