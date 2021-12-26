@@ -28,20 +28,17 @@ public class CookieServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		
+		//Create consent cookie and it to the response
 		CookieHandler.createConsentCookie(request,response);
-		
-		RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-		rd.forward(request, response);
+		//Redirect user back to index
+		response.sendRedirect("index.jsp");
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

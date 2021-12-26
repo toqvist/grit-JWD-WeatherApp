@@ -45,7 +45,7 @@ public class OWServlet extends HttpServlet {
 		}
 		//Create WeatherBean object with either default city or user input.
 		WeatherBean wBean = new WeatherBean(city, country);
-
+		
 		//Get weather data from OpenWeather API, and sets fetched data in wBean.
 		GetWeather.getWeather(wBean);
 		
@@ -63,7 +63,7 @@ public class OWServlet extends HttpServlet {
 		request.setAttribute("previousSearches", previousSearches);
 		
 		//Forward response to showWeather
-		RequestDispatcher rd = request.getRequestDispatcher("showWeather.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
 		rd.forward(request, response);
 	}
 	
