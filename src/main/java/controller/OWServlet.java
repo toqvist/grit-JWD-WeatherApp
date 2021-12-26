@@ -36,6 +36,7 @@ public class OWServlet extends HttpServlet {
 		String country ="";
 		
 		//getAttribute is only needed when OWServlet is reached by index.
+		//Otherwise OWServlet is called by showWeather with parameters.
 		if (request.getParameter("city")== null) {
 			city = (String)request.getAttribute("city");
 			country = (String)request.getAttribute("country");
@@ -57,12 +58,12 @@ public class OWServlet extends HttpServlet {
 			CookieHandler.createSearchCookie(request, response);
 		}
 		
-		//Get a list of strings with the values
+		//Get a list of strings with the values of each search cookie.
 		ArrayList<String> previousSearches = CookieHandler.getPreviousSearches(request);
 		//Add the list of strings to the request.
 		request.setAttribute("previousSearches", previousSearches);
 		
-		//Forward response to showWeather
+		//Forward response to user.
 		RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
 		rd.forward(request, response);
 	}

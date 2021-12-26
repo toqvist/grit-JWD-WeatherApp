@@ -20,12 +20,10 @@ public class GetWeather {
 
 	public static void getWeather(WeatherBean wBean) throws IOException {
 
-		// Build the API call URL by adding city+country into a URL
+		// Build the API call URL by adding city and country from weatherBean.
 		String URLtoSend = "http://api.openweathermap.org/data/2.5/weather?q=" + wBean.getCity() + ","
 				+ wBean.getCountry() + "&APPID=0b1fc4a863dbe9ca25032ffe077d9017&mode=xml";
 
-		// print and test in a browser
-		System.out.println(URLtoSend);
 		// Set the URL that will be sent
 		URL line_api_url = new URL(URLtoSend);
 
@@ -47,26 +45,24 @@ public class GetWeather {
 		// loop through the whole response
 		while ((inputLine = in.readLine()) != null) {
 
-			// System.out.println(inputLine);
 			// Save the temp line into the full response
 			ApiResponse += inputLine;
 		}
 		in.close();
-
-		// print the response
-		//System.out.println(ApiResponse);
 
 		// Call a method to make a XMLdoc out of the full response
 		Document doc = convertStringToXMLDocument(ApiResponse);
 
 		// normalize the XML response
 		doc.getDocumentElement().normalize();
-		// check that the XML response is OK by getting the Root element
-		//System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
+		
+		//Read data from XML response and add to WeatherBean 
 		wBean.setDescription(getElementString("weather", wBean, doc,"value"));
 		wBean.setTemperature(getElementString("temperature", wBean, doc, "value"));
 		wBean.setClouds(getElementString("clouds", wBean, doc, "name"));
 		wBean.setPrecipitation(getElementString("precipitation",wBean, doc, "mode"));
+		
+		//Get iconID from response and use id to choose appropriate icon.
 		String iconID = getElementString("weather", wBean, doc,"icon");
 		wBean.generateIcon(iconID);
 	}
@@ -84,10 +80,6 @@ public class GetWeather {
 				// get the content of an attribute in element
 			
 				String stringToSend = eElement.getAttribute(attributeType);
-				// and print it
-				//System.out.println(wBean.getCityStr() + " is now " + XMLclouds);
-				// save it
-				
 				return stringToSend;
 				
 			}

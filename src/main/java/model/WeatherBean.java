@@ -6,14 +6,11 @@ public class WeatherBean {
 	private String country;
 
 	private String clouds;
-	
-	
 	private String description;
+	private String precipitation;
 
 	private String temperatureStr;
 	private int tempC;
-	
-	private String precipitation;
 	
 	//Because icons are emoji's, stores the icon directly as a string.
 	private String icon;
@@ -24,7 +21,6 @@ public class WeatherBean {
 		this.country = country;
 
 	}
-
 	
 	public String getDescription() {
 		return description;
@@ -49,7 +45,8 @@ public class WeatherBean {
 	public void setPrecipitation(String precipitation) {
 		this.precipitation = precipitation;
 	}
-
+	
+	//Convert value from kelvin to celsius
 	public void tempConvertKtoC(String temperatureStr) {
 		double celsius = Double.parseDouble(temperatureStr) - 273.15;
 		System.out.println(celsius);
