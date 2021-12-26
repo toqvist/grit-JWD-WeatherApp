@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -33,12 +32,10 @@ public class OWServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		
 		String city ="";
 		String country ="";
 		
-		//getAttribute is only called by index.
+		//getAttribute is only needed when OWServlet is reached by index.
 		if (request.getParameter("city")== null) {
 			city = (String)request.getAttribute("city");
 			country = (String)request.getAttribute("country");
@@ -46,26 +43,26 @@ public class OWServlet extends HttpServlet {
 			city = request.getParameter("city");
 			country = request.getParameter("country");
 		}
-		
+		//Create WeatherBean object with either default city or user input.
 		WeatherBean wBean = new WeatherBean(city, country);
 
+		//Get weather data from OpenWeather API, and sets fetched data in wBean.
 		GetWeather.getWeather(wBean);
-
+		
+		//Pass the wBean object to the request so that it can be accessed in view.
 		request.setAttribute("wBean", wBean);
 		
-		
-		//----Call cookie handler and add cookies to the response
-		//System.out.println(CookieHandler.cookieConsent(request));
-		
-	
+		//Add search cookies to the response if the user has accepted cookies.
 		if (CookieHandler.cookieConsent(request).equals("accept")) {
 			CookieHandler.createSearchCookie(request, response);
 		}
 		
-		
+		//Get a list of strings with the values
 		ArrayList<String> previousSearches = CookieHandler.getPreviousSearches(request);
+		//Add the list of strings to the request.
 		request.setAttribute("previousSearches", previousSearches);
 		
+		//Forward response to showWeather
 		RequestDispatcher rd = request.getRequestDispatcher("showWeather.jsp");
 		rd.forward(request, response);
 	}

@@ -2,11 +2,11 @@
 	pageEncoding="UTF-8"%>
 
 <% 
-//Set default city.
+//Set default city. Set attribute is used because request dispatcher doesn't accept parameters.
 request.setAttribute("city", "Helsingborg");
 request.setAttribute("country", "se");
 
-//Send request to servlet, in order to show information about default city.
+//Forward the request to servlet, in order to show information about default city.
 RequestDispatcher rd = request.getRequestDispatcher("OWServlet");
 rd.forward(request, response);
 %>
