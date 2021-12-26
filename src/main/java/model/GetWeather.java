@@ -27,8 +27,8 @@ public class GetWeather {
 	public static void getWeather(WeatherBean wBean) throws IOException {
 
 		// Build the API call URL by adding city+country into a URL
-		String URLtoSend = "http://api.openweathermap.org/data/2.5/weather?q=" + wBean.getCityStr() + ","
-				+ wBean.getCountryStr() + "&APPID=0b1fc4a863dbe9ca25032ffe077d9017&mode=xml";
+		String URLtoSend = "http://api.openweathermap.org/data/2.5/weather?q=" + wBean.getCity() + ","
+				+ wBean.getCountry() + "&APPID=0b1fc4a863dbe9ca25032ffe077d9017&mode=xml";
 
 		// print and test in a browser
 		System.out.println(URLtoSend);
@@ -71,7 +71,7 @@ public class GetWeather {
 		//System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
 		wBean.setDescription(getElementString("weather", wBean, doc,"value"));
 		wBean.setTemperature(getElementString("temperature", wBean, doc, "value"));
-		wBean.setCloudsStr(getElementString("clouds", wBean, doc, "name"));
+		wBean.setClouds(getElementString("clouds", wBean, doc, "name"));
 		wBean.setPrecipitation(getElementString("precipitation",wBean, doc, "mode"));
 		String iconID = getElementString("weather", wBean, doc,"icon");
 		wBean.generateIcon(iconID);
