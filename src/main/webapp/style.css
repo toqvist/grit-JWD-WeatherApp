@@ -72,3 +72,11 @@ body {
 a:link, a:visited {
   color: white;
 }
+
+footer {
+	text-align:center;
+	background-color: rgb(180,180,180);
+	width:100%;
+	position:fixed;
+    bottom:0;
+}

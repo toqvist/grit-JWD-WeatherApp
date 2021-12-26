@@ -47,8 +47,7 @@ ArrayList<String> previousSearches = (ArrayList<String>) request.getAttribute("p
 		</div>
 		<div class="right-side">
 			<% out.print("<p>Clouds: " + wBean.getClouds() + "</p>"); %>
-			<% out.print("<p>Rain: " + wBean.getPrecipitation() + "</p>");
-			%>
+			<% out.print("<p>Rain: " + wBean.getPrecipitation() + "</p>");%>
 
 		</div>
 	</div>
