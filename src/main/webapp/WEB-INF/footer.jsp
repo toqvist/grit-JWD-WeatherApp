@@ -1,1 +1,1 @@
-<footer>® <a href="https://github.com/toqvist">toqvist</a></footer>
+<footer><a href="https://github.com/toqvist">© toqvist</a></footer>

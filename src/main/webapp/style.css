@@ -41,7 +41,9 @@ body {
 }
 
 
-/*Icon Border currently creates ovals because the emoji's are rectangles*/
+/*Icon Border currently creates ovals sometimes because the emoji's are rectangles
+This is not intended*/
+
 .weather-box p {
 	 text-align: end;
 	 font-weight: 700;
